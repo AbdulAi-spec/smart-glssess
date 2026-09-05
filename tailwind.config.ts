@@ -9,66 +9,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: '#050507',
-        obsidian: {
-          950: '#050507',
-          900: '#07070b',
-          850: '#0a0a0f',
-          800: '#101017',
-          700: '#171722',
-          600: '#222230',
+        background: '#050505',
+        surface: '#0A0A0C',
+        'surface-elevated': '#121216',
+        cyan: {
+          electric: '#00D6FF',
+          glow: 'rgba(0, 214, 255, 0.25)',
         },
-        champagne: {
-          light: '#E6CA85',
-          DEFAULT: '#D4AF37',
-          dark: '#B38F24',
-          muted: '#C5A880',
-          glow: 'rgba(212, 175, 55, 0.25)',
+        blue: {
+          corporate: '#0050FF',
+          glow: 'rgba(0, 80, 255, 0.25)',
         },
         titanium: {
-          silver: '#E5E7EB',
-          frost: '#D1D5DB',
-          raw: '#9CA3AF',
-          dark: '#4B5563',
+          liquid: '#E5E7EB',
+          matte: '#9CA3AF',
+          dark: '#1F2937',
         },
       },
       fontFamily: {
         sans: [
-          'Inter',
+          'SF Pro Display',
           '-apple-system',
           'BlinkMacSystemFont',
+          'Inter',
           'Segoe UI',
           'Roboto',
           'sans-serif',
         ],
         mono: [
+          'SF Mono',
           'JetBrains Mono',
-          'SFMono-Regular',
           'Menlo',
-          'Monaco',
-          'Consolas',
           'monospace',
         ],
       },
       backgroundImage: {
-        'radial-radial': 'radial-gradient(circle at 50% 0%, var(--tw-gradient-stops))',
-        'subtle-glow': 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212,175,55,0.06), transparent 40%)',
-        'titanium-specular': 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(212,175,55,0.08) 50%, rgba(255,255,255,0.02) 100%)',
+        'cyan-radial': 'radial-gradient(circle at 50% 50%, rgba(0, 214, 255, 0.08) 0%, transparent 60%)',
+        'blue-radial': 'radial-gradient(circle at 50% 50%, rgba(0, 80, 255, 0.1) 0%, transparent 65%)',
+        'glass-radial': 'radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 70%)',
       },
       boxShadow: {
-        'glow-champagne': '0 0 35px -5px rgba(212, 175, 55, 0.2)',
-        'glow-champagne-sm': '0 0 15px -3px rgba(212, 175, 55, 0.25)',
-        'glass-edge': 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.1)',
-      },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
+        'glow-cyan': '0 0 35px -5px rgba(0, 214, 255, 0.3)',
+        'glow-blue': '0 0 35px -5px rgba(0, 80, 255, 0.35)',
       },
     },
   },

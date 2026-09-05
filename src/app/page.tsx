@@ -2,333 +2,257 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Sparkles,
-  ShieldCheck,
-  Cpu,
-  Layers,
-  Zap,
-  Wind,
-  Eye,
-  Laptop,
-} from 'lucide-react';
-import ScrollCanvasScrubber, { ScrollMilestone } from '@/components/3d/ScrollCanvasScrubber';
+import AppleProductNav from '@/components/layout/AppleProductNav';
+import AppleScrollytellingStage, { StoryPhase } from '@/components/scrollytelling/AppleScrollytellingStage';
+import { cn } from '@/lib/utils';
+import { ArrowRight, Eye, Laptop } from 'lucide-react';
 
-const homeOverviewMilestones: ScrollMilestone[] = [
+const glassesPhases: StoryPhase[] = [
   {
-    startProgress: 0.0,
-    endProgress: 0.35,
-    badge: 'SHENZHEN PRECISION',
-    title: 'The Architecture of',
-    highlight: 'Precision Engineering.',
-    description:
-      'Every curve and seam milled from aerospace-grade aluminum and titanium alloys down to ±0.005mm tolerances in our Longgang facility.',
-    specs: [
-      { label: 'TOLERANCE', value: '±0.005mm' },
-      { label: 'FINISH', value: 'Ceramic Anodized' },
-    ],
-    position: 'left',
+    range: [0.0, 0.15],
+    alignment: 'center',
+    headline: 'AR Smart Glasses',
+    subheadline: 'Reality, augmented.',
+    body: 'The future of spatial computing, seamlessly integrated into your daily life.',
   },
   {
-    startProgress: 0.35,
-    endProgress: 0.7,
-    badge: 'STUDIO KINEMATICS',
-    title: 'Kinematic Evolution.',
-    highlight: 'Pull-Forward Display.',
-    description:
-      'Engineered with dual stainless-steel geared hinges, allowing the 14-inch 2.8K 120Hz display to glide forward from clamshell into studio hover.',
-    specs: [
-      { label: 'DISPLAY', value: '2.8K 120Hz' },
-      { label: 'RATIO', value: '92%+ Screen' },
-    ],
-    position: 'right',
+    range: [0.15, 0.4],
+    alignment: 'left',
+    badge: 'AEROSPACE METALLURGY',
+    headline: 'Precision-engineered for vision.',
+    subheadline: 'Matte Titanium Chassis',
+    body: 'Milled from aerospace Grade-5 titanium with dual micro-tension hinges. Featherweight 48-gram mass distribution ensures effortless all-day wearable comfort.',
   },
   {
-    startProgress: 0.7,
-    endProgress: 1.0,
-    badge: 'THERMAL MASTERY',
-    title: 'Vapor Chamber Deconstructed.',
-    highlight: 'Silent Powerhouse.',
-    description:
-      'Sintered micro-fin copper vapor chamber combined with twin whisper fans sustaining peak compute with noise levels under 19dB.',
-    specs: [
-      { label: 'THERMAL', value: '0.1mm Vapor Fin' },
-      { label: 'NOISE', value: '< 19 dB' },
+    range: [0.4, 0.65],
+    alignment: 'right',
+    badge: 'OPTICS & SPATIAL SENSORS',
+    headline: 'Holographic depth, redefined.',
+    subheadline: '2,500 Nits Waveguide',
+    body: [
+      'Multi-sensor array maps your environment in real-time.',
+      'Waveguide optics project crisp, vivid data layers.',
+      'Your vision stays clear—digital and physical worlds seamlessly merge.',
     ],
-    position: 'left',
+  },
+  {
+    range: [0.65, 0.85],
+    alignment: 'left',
+    badge: 'NEURAL COMPUTE & AUDIO',
+    headline: 'Immersive spatial intelligence.',
+    subheadline: 'Sub-15ms On-Device SLAM',
+    body: 'Frame-embedded edge neural processor executes real-time spatial odometry and gesture tracking with zero cloud latency, paired with reverse-phase directional acoustic actuators.',
+  },
+  {
+    range: [0.85, 1.0],
+    alignment: 'center',
+    headline: 'See beyond. Experience everything.',
+    subheadline: 'AR Smart Glasses. Designed for life, engineered for the future.',
+    ctaPrimary: {
+      label: 'Experience AR Smart Glasses',
+      href: '/smart-glasses#experience',
+    },
+    ctaSecondary: {
+      label: 'See full specs',
+      href: '/smart-glasses#specs',
+    },
+  },
+];
+
+const laptopPhases: StoryPhase[] = [
+  {
+    range: [0.0, 0.15],
+    alignment: 'center',
+    headline: 'Studio Laptop Flagship',
+    subheadline: 'The architecture of precision.',
+    body: 'Uncompromising power meets revolutionary convertible design.',
+  },
+  {
+    range: [0.15, 0.4],
+    alignment: 'left',
+    badge: 'AEROSPACE CHASSIS',
+    headline: 'Milled for perfection.',
+    subheadline: 'Single-Block Aluminum',
+    body: 'Machined from a single block of aerospace alloy to ±0.005mm tolerances. Dual geared stainless-steel hinges deliver smooth, wobble-free posture transitions with structural rigidity.',
+  },
+  {
+    range: [0.4, 0.65],
+    alignment: 'right',
+    badge: 'THERMAL & CORE COMPUTE',
+    headline: 'Silent power, unleashed.',
+    subheadline: 'Copper Vapor Phase Loop',
+    body: [
+      'Advanced vapor cooling sustains peak performance.',
+      'High-density core processing handles massive workflows.',
+      'Your workspace remains quiet—even under extreme rendering loads.',
+    ],
+  },
+  {
+    range: [0.65, 0.85],
+    alignment: 'left',
+    badge: 'DISPLAY & TACTILE MATRIX',
+    headline: 'An immersive canvas.',
+    subheadline: '92% Screen-to-Body Ratio',
+    body: 'Color-accurate 2.8K 120Hz IPS touchscreen with ultra-narrow bezels, paired with dome-switch scissor keys providing a crisp 1.3mm travel and fatigue-free typing cadence.',
+  },
+  {
+    range: [0.85, 1.0],
+    alignment: 'center',
+    headline: 'Create without limits.',
+    subheadline: 'Studio Laptop. Engineered for visionaries, crafted for professionals.',
+    ctaPrimary: {
+      label: 'Experience the Studio Laptop',
+      href: '/laptop#experience',
+    },
+    ctaSecondary: {
+      label: 'See full specs',
+      href: '/laptop#specs',
+    },
   },
 ];
 
 export default function HomePage() {
-  const [laptopCardMouse, setLaptopCardMouse] = useState({ x: 0, y: 0 });
-  const [glassesCardMouse, setGlassesCardMouse] = useState({ x: 0, y: 0 });
+  const [activeProduct, setActiveProduct] = useState<'glasses' | 'laptop'>('glasses');
+
+  const glassesLinks = [
+    { name: 'Overview', href: '#overview' },
+    { name: 'Optics', href: '/smart-glasses#optics' },
+    { name: 'Sensors', href: '/smart-glasses#sensors' },
+    { name: 'Specs', href: '/smart-glasses#specs' },
+    { name: 'Buy', href: '/contact' },
+  ];
+
+  const laptopLinks = [
+    { name: 'Overview', href: '#overview' },
+    { name: 'Architecture', href: '/laptop#architecture' },
+    { name: 'Display', href: '/laptop#display' },
+    { name: 'Specs', href: '/laptop#specs' },
+    { name: 'Buy', href: '/contact' },
+  ];
 
   return (
-    <div className="relative overflow-hidden pt-28 sm:pt-36 pb-24 space-y-24">
-      {/* SECTION 1: Cinematic Hero Viewport */}
-      <section className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center space-y-8">
-        {/* Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.03] border border-champagne/30 backdrop-blur-xl shadow-glow-champagne-sm"
-        >
-          <span className="w-2 h-2 rounded-full bg-champagne animate-pulse" />
-          <span className="text-xs font-mono tracking-widest text-champagne uppercase font-medium">
-            SHENZHEN MANDYLI HARDWARE • R&D PREVIEW
-          </span>
-        </motion.div>
+    <div className="bg-[#050505] min-h-screen text-white/90 selection:bg-cyan-electric/30 selection:text-white">
+      {/* Top Apple Product Navigation with Product Switcher */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-[#050505]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-3">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+          {/* Left: Product Switcher Pill */}
+          <div className="flex items-center gap-2 p-1 rounded-full bg-white/[0.04] border border-white/10">
+            <button
+              onClick={() => setActiveProduct('glasses')}
+              className={cn(
+                'flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300',
+                activeProduct === 'glasses'
+                  ? 'bg-white/10 text-white shadow-sm border border-cyan-electric/40 text-cyan-electric'
+                  : 'text-white/50 hover:text-white'
+              )}
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>AR Smart Glasses</span>
+            </button>
 
-        {/* Hero Main Headline */}
-        <div className="space-y-4 max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl sm:text-7xl lg:text-8xl font-extralight tracking-tight text-white font-sans"
-          >
-            The Architecture of
-            <span className="block text-gradient-champagne font-normal tracking-tight">
-              Precision
-            </span>
-          </motion.h1>
+            <button
+              onClick={() => setActiveProduct('laptop')}
+              className={cn(
+                'flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300',
+                activeProduct === 'laptop'
+                  ? 'bg-white/10 text-white shadow-sm border border-blue-corporate/40 text-[#60A5FA]'
+                  : 'text-white/50 hover:text-white'
+              )}
+            >
+              <Laptop className="w-3.5 h-3.5" />
+              <span>Studio Laptop</span>
+            </button>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-base sm:text-xl text-neutral-400 font-light max-w-2xl mx-auto leading-relaxed"
-          >
-            Scroll down to watch the hardware transform in 3D. From pull-forward studio kinematics to exploded vapor cooling and diffractive neural AR.
-          </motion.p>
+          {/* Center Links */}
+          <nav className="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide">
+            {(activeProduct === 'glasses' ? glassesLinks : laptopLinks).map((l) => (
+              <a key={l.name} href={l.href} className="text-white/60 hover:text-white transition-colors">
+                {l.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Right CTA */}
+          <div className="flex items-center gap-3">
+            <Link
+              href={activeProduct === 'glasses' ? '/smart-glasses' : '/laptop'}
+              className={cn(
+                'px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-medium tracking-wide text-white transition-all shadow-lg',
+                activeProduct === 'glasses'
+                  ? 'bg-gradient-to-r from-cyan-electric/80 to-blue-corporate hover:shadow-glow-cyan'
+                  : 'bg-gradient-to-r from-blue-corporate to-cyan-electric hover:shadow-glow-blue'
+              )}
+            >
+              <span>{activeProduct === 'glasses' ? 'Experience AR' : 'Experience Studio'}</span>
+            </Link>
+          </div>
         </div>
+      </header>
 
-        {/* Hero Actions */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-        >
-          <Link
-            href="/laptop"
-            className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-champagne text-obsidian-950 hover:bg-champagne-light shadow-glow-champagne transition-all duration-300 active:scale-95"
-          >
-            <span>Explore Studio Laptop</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-
-          <Link
-            href="/smart-glasses"
-            className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-medium tracking-wider uppercase bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-champagne/40 backdrop-blur-xl transition-all duration-300 active:scale-95"
-          >
-            <span>Inspect AR Glasses</span>
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </Link>
-        </motion.div>
-      </section>
-
-      {/* SECTION 2: THE SCROLL-DRIVEN 3D SHOWCASE ON HOMEPAGE */}
-      <section className="relative -mx-6 lg:-mx-8">
-        <div className="text-center mb-4">
-          <span className="text-[10px] font-mono tracking-widest text-champagne uppercase">
-            CONTINUOUS 3D HARDWARE TRANSFORMATION
-          </span>
-        </div>
-        <ScrollCanvasScrubber
-          folder="laptop"
-          totalFrames={300}
-          milestones={homeOverviewMilestones}
-          scrollHeight="h-[350vh]"
+      {/* Main 120-Frame Scrollytelling Canvas */}
+      <section id="overview" className="relative pt-16">
+        <AppleScrollytellingStage
+          key={activeProduct}
+          folder={activeProduct}
+          accentColor={activeProduct === 'glasses' ? 'cyan' : 'blue'}
+          phases={activeProduct === 'glasses' ? glassesPhases : laptopPhases}
         />
       </section>
 
-      {/* SECTION 3: Dual Showcase Split / Bento Grid */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Flagship Selector Cards Section */}
+      <section className="py-24 max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/[0.06]">
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[10px] font-mono text-champagne uppercase tracking-widest">
-            <Layers className="w-3.5 h-3.5" />
-            <span>DUAL FLAGSHIP HARDWARE</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight">
-            Two Masterpieces. One Vision.
-          </h2>
-          <p className="text-xs sm:text-sm text-neutral-400">
-            Select a hardware flagship to enter its dedicated interactive 3D stage.
-          </p>
+          <span className="text-xs font-mono tracking-widest text-white/40 uppercase">
+            FLAGSHIP HARDWARE PORTFOLIO
+          </span>
+          <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-white/90">
+            Explore Both Flagship Stories
+          </h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Card 1: Convertible Studio Laptop */}
-          <Link
-            href="/laptop"
-            onMouseMove={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect();
-              setLaptopCardMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-            }}
-            className="group relative rounded-3xl p-8 sm:p-10 bg-obsidian-900/90 border border-white/[0.08] hover:border-champagne/40 transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[520px] shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:shadow-glow-champagne"
-          >
-            <div
-              className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background: `radial-gradient(500px circle at ${laptopCardMouse.x}px ${laptopCardMouse.y}px, rgba(212, 175, 55, 0.12), transparent 70%)`,
-              }}
-            />
-
-            <div className="relative z-10 flex items-start justify-between">
-              <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase bg-white/5 border border-white/10 text-champagne mb-3">
-                  <Laptop className="w-3 h-3" />
-                  MODEL DJS140S
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-light text-white group-hover:text-champagne-light transition-colors">
-                  Convertible Studio Laptop
-                </h3>
-                <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-md">
-                  Dual-hinge pull-forward studio architecture, 14&quot; 2.8K 120Hz display, dome-switch keyboard, and copper vapor chamber.
-                </p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:bg-champagne group-hover:text-obsidian-950 transition-colors">
-                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
-            </div>
-
-            <div className="relative z-10 my-8 w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/[0.06] bg-black/40 group-hover:scale-[1.02] transition-transform duration-500">
-              <Image
-                src="/frames/laptop/ezgif-frame-075.jpg"
-                alt="Mandyli Studio Laptop"
-                fill
-                className="object-contain p-2"
-                priority
-              />
-            </div>
-
-            <div className="relative z-10 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-neutral-400">
-              <span className="text-champagne">3 FUNCTIONAL MODES</span>
-              <span>COPPER VAPOR COOLING</span>
-              <span className="text-white group-hover:translate-x-1 transition-transform">LAUNCH 3D STAGE &rarr;</span>
-            </div>
-          </Link>
-
-          {/* Card 2: Neural AR Smart Glasses */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Link
             href="/smart-glasses"
-            onMouseMove={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect();
-              setGlassesCardMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-            }}
-            className="group relative rounded-3xl p-8 sm:p-10 bg-obsidian-900/90 border border-white/[0.08] hover:border-champagne/40 transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[520px] shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:shadow-glow-champagne"
+            className="group relative rounded-3xl p-8 sm:p-10 bg-[#0A0A0C] border border-white/[0.08] hover:border-cyan-electric/40 transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[360px] shadow-2xl hover:shadow-glow-cyan"
           >
-            <div
-              className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background: `radial-gradient(500px circle at ${glassesCardMouse.x}px ${glassesCardMouse.y}px, rgba(212, 175, 55, 0.12), transparent 70%)`,
-              }}
-            />
-
-            <div className="relative z-10 flex items-start justify-between">
-              <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase bg-white/5 border border-white/10 text-champagne mb-3">
-                  <Eye className="w-3 h-3" />
-                  NEURAL SPATIAL AR
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-light text-white group-hover:text-champagne-light transition-colors">
-                  Neural AR Smart Glasses
-                </h3>
-                <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-md">
-                  48-gram aerospace titanium frame, diffractive optical waveguide, ambient spatial sensors, and on-frame neural engine.
-                </p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:bg-champagne group-hover:text-obsidian-950 transition-colors">
-                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
+            <div className="space-y-2">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-electric">
+                FLAGSHIP 01 • MATTE TITANIUM
+              </span>
+              <h4 className="text-3xl font-bold text-white group-hover:text-cyan-electric transition-colors">
+                AR Smart Glasses &rarr;
+              </h4>
+              <p className="text-sm text-white/60 leading-relaxed max-w-md">
+                Holographic waveguide optics, 48g Grade-5 titanium frame, and on-frame neural spatial engine.
+              </p>
             </div>
-
-            <div className="relative z-10 my-8 w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/[0.06] bg-black/40 group-hover:scale-[1.02] transition-transform duration-500">
-              <Image
-                src="/frames/glasses/ezgif-frame-080.jpg"
-                alt="Mandyli Neural AR Smart Glasses"
-                fill
-                className="object-contain p-2"
-                priority
-              />
-            </div>
-
-            <div className="relative z-10 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-neutral-400">
-              <span className="text-champagne">48G TITANIUM</span>
-              <span>15MS MOTION-TO-PHOTON</span>
-              <span className="text-white group-hover:translate-x-1 transition-transform">LAUNCH 3D STAGE &rarr;</span>
+            <div className="pt-6 border-t border-white/5 flex items-center justify-between text-xs font-mono text-white/40">
+              <span>120-FRAME SCROLL STORY</span>
+              <span className="text-white group-hover:translate-x-1 transition-transform">LAUNCH &rarr;</span>
             </div>
           </Link>
-        </div>
-      </section>
 
-      {/* SECTION 4: Brand Credentials & Shenzhen R&D Strip */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden p-8 sm:p-14 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/[0.07] backdrop-blur-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
-            <div className="lg:col-span-1 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[10px] font-mono text-champagne uppercase tracking-widest">
-                <ShieldCheck className="w-3 h-3" />
-                <span>R&D MANUFACTURING CRITERIA</span>
-              </div>
-              <h3 className="text-3xl font-light text-white">
-                Engineered in Shenzhen.
-                <span className="block text-gradient-champagne font-normal">
-                  Deployed Globally.
-                </span>
-              </h3>
-              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                Operating at the epicenter of global hardware innovation. Our Longgang facility integrates state-of-the-art 5-axis CNC machines, automated optical inspection, and class 100 cleanrooms.
+          <Link
+            href="/laptop"
+            className="group relative rounded-3xl p-8 sm:p-10 bg-[#0A0A0C] border border-white/[0.08] hover:border-blue-corporate/40 transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[360px] shadow-2xl hover:shadow-glow-blue"
+          >
+            <div className="space-y-2">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#60A5FA]">
+                FLAGSHIP 02 • SPACE GRAY UNIBODY
+              </span>
+              <h4 className="text-3xl font-bold text-white group-hover:text-[#60A5FA] transition-colors">
+                Studio Laptop &rarr;
+              </h4>
+              <p className="text-sm text-white/60 leading-relaxed max-w-md">
+                Pull-forward studio kinematics, sintered copper vapor cooling, and 14-inch 2.8K 120Hz display.
               </p>
-              <Link
-                href="/engineering"
-                className="inline-flex items-center gap-2 text-xs font-mono text-champagne hover:text-champagne-light uppercase tracking-wider pt-2"
-              >
-                <span>Read Engineering Whitepaper</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
             </div>
-
-            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-                <div className="text-2xl font-light text-white font-mono">±0.005 mm</div>
-                <div className="text-xs font-semibold text-neutral-200">5-Axis CNC Precision</div>
-                <p className="text-xs text-neutral-400">
-                  Every aluminum and titanium unibody undergoes continuous high-speed CNC milling for uncompromising structural integrity.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-                <div className="text-2xl font-light text-white font-mono">ISO Class 5</div>
-                <div className="text-xs font-semibold text-neutral-200">Cleanroom Assembly</div>
-                <p className="text-xs text-neutral-400">
-                  Waveguide optical gratings are etched and collimated in airborne particle-controlled cleanrooms.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-                <div className="text-2xl font-light text-white font-mono">100% AOI</div>
-                <div className="text-xs font-semibold text-neutral-200">Automated Optical Inspection</div>
-                <p className="text-xs text-neutral-400">
-                  Multi-angle robotic cameras verify solder joint integrity and optical alignment down to the micron.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-                <div className="text-2xl font-light text-white font-mono">MIL-STD-810H</div>
-                <div className="text-xs font-semibold text-neutral-200">Rugged Reliability</div>
-                <p className="text-xs text-neutral-400">
-                  Tested against thermal shock, drop impact, moisture, and high-frequency vibration endurance.
-                </p>
-              </div>
+            <div className="pt-6 border-t border-white/5 flex items-center justify-between text-xs font-mono text-white/40">
+              <span>120-FRAME SCROLL STORY</span>
+              <span className="text-white group-hover:translate-x-1 transition-transform">LAUNCH &rarr;</span>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
     </div>
