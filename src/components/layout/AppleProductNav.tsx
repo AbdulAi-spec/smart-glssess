@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import TechLogo from '@/components/ui/TechLogo';
 
 interface AppleProductNavProps {
   productTitle: string;
@@ -45,11 +46,15 @@ export default function AppleProductNav({
       )}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-        {/* Left: Product Title */}
-        <div className="flex items-center gap-4">
+        {/* Left: Tech Logo + Product Title */}
+        <div className="flex items-center gap-5">
+          <TechLogo size="sm" />
+
+          <div className="h-4 w-[1px] bg-white/10 hidden sm:block" />
+
           <Link
             href="/"
-            className="text-base sm:text-lg font-semibold tracking-tight text-white/95 hover:text-white transition-colors flex items-center gap-2"
+            className="text-sm sm:text-base font-semibold tracking-tight text-white/95 hover:text-white transition-colors"
           >
             <span>{productTitle}</span>
           </Link>
@@ -59,7 +64,7 @@ export default function AppleProductNav({
               href={switchHref}
               className="hidden lg:inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-white/40 hover:text-white/80 transition-colors pl-3 border-l border-white/10"
             >
-              <span>Switch to {switchTitle}</span>
+              <span>{switchTitle}</span>
               <ArrowRight className="w-3 h-3" />
             </Link>
           )}
