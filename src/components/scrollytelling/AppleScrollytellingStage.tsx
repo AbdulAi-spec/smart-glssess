@@ -47,7 +47,8 @@ export default function AppleScrollytellingStage({
       const rawIndex = Math.round(1 + (index / (totalFrames - 1)) * 299);
       const bounded = Math.max(1, Math.min(300, rawIndex));
       const padded = String(bounded).padStart(3, '0');
-      return `/frames/${folder}/ezgif-frame-${padded}.jpg`;
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+      return `${basePath}/frames/${folder}/ezgif-frame-${padded}.jpg`;
     },
     [folder, totalFrames]
   );
