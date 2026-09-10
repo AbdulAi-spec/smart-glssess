@@ -11,19 +11,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Shenzhen Mandyli Technology | Flagship Hardware Showcase',
+  title: 'Mandili Technology Co., Ltd. | Intelligent Electronic Terminals & Solutions',
   description:
-    'Ultra-luxury corporate hardware showcase for Shenzhen Mandyli Technology. Featuring the Flagship Convertible Studio Laptop DJS140S and Neural AR Smart Glasses. Precision engineered in Shenzhen.',
+    'Mandili Technology Co., Ltd., established in 2022. High-performance laptops, all-in-one PCs, uninterruptible power supplies (UPS), AI smart glasses, wireless earphones, customized electronic solutions, and creative packaging.',
   keywords: [
-    'Shenzhen Mandyli Technology',
-    'Convertible Studio Laptop',
-    'DJS140S',
-    'Neural AR Smart Glasses',
-    'Waveguide Optics',
-    'Vapor Chamber Cooling',
-    'Shenzhen Precision Hardware',
+    'Mandili Technology',
+    'Mandili Technology Co., Ltd.',
+    'Intelligent Electronic Terminals',
+    'High-Performance Laptops',
+    'All-in-One PCs',
+    'Uninterruptible Power Supplies',
+    'UPS',
+    'AI Smart Glasses',
+    'Wireless Earphones',
+    'Customized Solutions',
+    'Creative Packaging',
+    'Technology with a Human Touch',
   ],
-  authors: [{ name: 'Shenzhen Mandyli Technology Co., Ltd.' }],
+  authors: [{ name: 'Mandili Technology Co., Ltd.' }],
 };
 
 export default function RootLayout({

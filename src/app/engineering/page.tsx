@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import EngineeringView from '@/components/engineering/EngineeringView';
 
 export const metadata: Metadata = {
-  title: 'Engineering & R&D | Shenzhen Mandyli Technology',
+  title: 'Engineering & R&D | Mandili Technology Co., Ltd.',
   description:
-    'Explore the precision engineering behind Shenzhen Mandyli Technology hardware. Cleanroom optical fab, vapor chamber dynamics, and aerospace CNC machining.',
+    'Explore the precision engineering behind Mandili Technology hardware. Cleanroom optical fab, vapor chamber dynamics, and aerospace CNC machining.',
 };
 
 export default function EngineeringPage() {

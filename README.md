@@ -1,47 +1,48 @@
-# Shenzhen Mandyli Technology — Ultra-Luxury Hardware Showcase
+# Mandili Technology Co., Ltd. � Intelligent Electronic Terminals & Custom Solutions
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbdulAi-spec%2Fsmart-glssess)
 
-> Ultra-luxury hardware portal and Apple-level cinematic scrollytelling experience for **Shenzhen Mandyli Technology Co., Ltd.** Featuring a sticky fullscreen canvas playing a 120-frame image sequence of hardware exploding and reassembling as the user scrolls in seamless `#050505` black space.
+> Intelligent Electronic Terminals, High-Performance Computing, and Custom Enterprise Solutions by **Mandili Technology Co., Ltd.** (Est. 2022). Featuring Apple-level cinematic scrollytelling showcases in seamless `#050505` obsidian space.
 
 ---
 
-## 🌐 Instant 1-Click Live Deployment
+## ?? Company Profile
 
-Click the button below to deploy this website live to the web in under 60 seconds with zero setup:
+**Mandili Technology Co., Ltd.**, established in 2022, is a vibrant and dynamic tech startup. Adhering to the business philosophy of **"frugality cultivates virtue, quality builds character,"** we build our core competitiveness through efficiency and cost-effectiveness, while embedding customer-centricity and quality commitment into every product we deliver.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbdulAi-spec%2Fsmart-glssess)
+### ?? Core Business
+Our business focuses on intelligent electronic terminals and customized solutions:
+- **High-Performance Laptops** � Flagship convertible and workstation designs with vapor phase loop cooling.
+- **All-in-One PCs (AIO)** � Minimalist unibody desktop workstations with ultra-slim bezels.
+- **AI Smart Glasses** � Holographic diffractive waveguide optics, Grade-5 titanium frame, and edge neural SLAM.
+- **Wireless Earphones** � Active noise cancellation and studio-grade acoustic graphene drivers.
+- **Uninterruptible Power Supplies (UPS)** � High-reliability sine-wave power backup and failover resilience.
+- **Creative Personalized Packaging & Branded Gifts** � Exclusive personalized packaging and branded promotional items, striving to make technology not only high-performing but also infused with human warmth and aesthetic value.
 
-1. Click **Deploy with Vercel** above (or go to [vercel.com/new](https://vercel.com/new) and select `AbdulAi-spec/smart-glssess`).
-2. Click **Deploy**.
-3. Your live production URL (e.g. `https://smart-glssess.vercel.app`) will be active immediately with free global CDN and SSL.
-
----
-
-## 🚀 Key Pages & Interactive Routes
-
-| Route | Page | Description |
-|---|---|---|
-| `/smart-glasses` | **AR Smart Glasses** | 120-frame scrollytelling canvas: matte titanium frame exploding into waveguide optics, spatial sensors, neural SLAM, and reassembling into wearable mode. |
-| `/laptop` | **Studio Laptop Flagship** | 120-frame scrollytelling canvas: pull-forward studio architecture, copper vapor chamber loop, and dome-switch scissor keyboard. |
-| `/` | **Dual Flagship Portal** | Direct 1-click product switcher between Glasses and Laptop with interactive spec matrix. |
-| `/engineering` | **Engineering Deep-Dive** | Thermodynamics cleanroom, waveguide optical fabrication, and acoustic whisper labs. |
-| `/contact` | **Contact & Procurement** | Official registered facility address, GPS coordinates, operating hours, and enterprise hardware deployment inquiry form. |
+### ?? Vision and Mission
+We firmly believe in **"technology with a human touch,"** and are committed to integrating the digital intelligence of the new era into everyday life, fostering a harmonious coexistence between people and technology. We operate responsibly to give back to society, and build a healthy supply chain ecosystem through open and win-win cooperation. We look forward to resonating with our partners, and on the path of technology for good, we will steadily advance towards a sustainable future.
 
 ---
 
-## 🏢 Corporate Headquarters
+## ?? Corporate Headquarters
 
-- **Company**: Shenzhen Mandyli Technology Co., Ltd.
+- **Company**: Mandili Technology Co., Ltd.
+- **Established**: 2022
 - **Registered Address**:  
   Room 206, No.8 Ma Li Road, Longgang Avenue, Longgang District, Shenzhen City, Guangdong Province, China
-- **Coordinates**: `22.7214° N, 114.2486° E`
+- **Coordinates**: `22.7214� N, 114.2486� E`
 - **Timezone**: GMT+8 (Shenzhen CST)
-- **Direct Inquiries**: `contact@mandyli-tech.com` | `+86 755 8988 2068`
+- **Direct Inquiries**: `contact@mandili-tech.com` | `+86 755 8988 2068`
 
 ---
 
-## 💻 Local Development
+## ?? 1-Click Production Deployment
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbdulAi-spec%2Fsmart-glssess)
+
+---
+
+## ?? Local Development & Export
 
 ```bash
 # Clone the repository
@@ -54,6 +55,6 @@ npm install
 # Run development server
 npm run dev
 
-# Open in browser
-http://localhost:3000
+# Export static build for Hostinger (public_html)
+npm run build:export
 ```
